@@ -1,8 +1,8 @@
-$('#rack-webconsole form').submit(function(e){
+jQuery('#rack-webconsole form').submit(function(e){
   e.preventDefault();
 });
 
-$("#rack-webconsole form input").keyup(function(event) {
+jQuery("#rack-webconsole form input").keyup(function(event) {
   function escapeHTML(string) {
     return(string.replace(/&/g,'&amp;').
       replace(/>/g,'&gt;').
@@ -12,9 +12,9 @@ $("#rack-webconsole form input").keyup(function(event) {
   };
 
   if (event.which == 13) {
-    /*$.post('/webconsole', $("#rack-webconsole form").serialize());*/
-    var query = $("#query").val();
-    $.ajax({
+    /*jQuery.post('/webconsole', jQuery("#rack-webconsole form").serialize());*/
+    var query = jQuery("#query").val();
+    jQuery.ajax({
       url: '/webconsole',
       type: 'POST',
       dataType: 'json',
@@ -22,28 +22,28 @@ $("#rack-webconsole form input").keyup(function(event) {
       success: function (data) {
         var q = "<div class='query'>" + escapeHTML(">> " + query) + "</div>";
         var r = "<div class='result'>" + escapeHTML("=> " + data.result) + "</div>";
-        $("#rack-webconsole .results").append(q + r);
-        $("#rack-webconsole .results_wrapper").scrollTop(
-          $("#rack-webconsole .results").height()
+        jQuery("#rack-webconsole .results").append(q + r);
+        jQuery("#rack-webconsole .results_wrapper").scrollTop(
+          jQuery("#rack-webconsole .results").height()
         );
-        $("#query").val('');
+        jQuery("#query").val('');
       }
     });
   }
 });
 
-$(document).ready(function() {
-  $("#rack-webconsole").hide();
-  $(this).keypress(function(event) {
+jQuery(document).ready(function() {
+  jQuery("#rack-webconsole").hide();
+  jQuery(this).keypress(function(event) {
     if (event.which == 96) {
-      $("#rack-webconsole").slideToggle('fast', function() {
-        if ($(this).is(':visible')) {
-          $("#rack-webconsole form input").focus();
-          $("#rack-webconsole .results_wrapper").scrollTop(
-            $("#rack-webconsole .results").height()
+      jQuery("#rack-webconsole").slideToggle('fast', function() {
+        if (jQuery(this).is(':visible')) {
+          jQuery("#rack-webconsole form input").focus();
+          jQuery("#rack-webconsole .results_wrapper").scrollTop(
+            jQuery("#rack-webconsole .results").height()
           );
         } else {
-          $("#rack-webconsole form input").blur();
+          jQuery("#rack-webconsole form input").blur();
         }
       });
       event.preventDefault();
