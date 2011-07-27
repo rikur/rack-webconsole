@@ -34,20 +34,19 @@ jQuery("#rack-webconsole form input").keyup(function(event) {
 
 jQuery(document).ready(function() {
   jQuery("#rack-webconsole").hide();
-  jQuery(this).keypress(function(event) {
-    if (event.which == 96) {
-      jQuery("#rack-webconsole").slideToggle('fast', function() {
-        if (jQuery(this).is(':visible')) {
-          jQuery("#rack-webconsole form input").focus();
-          jQuery("#rack-webconsole .results_wrapper").scrollTop(
-            jQuery("#rack-webconsole .results").height()
-          );
-        } else {
-          jQuery("#rack-webconsole form input").blur();
-        }
-      });
-      event.preventDefault();
-    }
-  });
+	konami = new Konami()
+	konami.code = function() {
+	jQuery("#rack-webconsole").slideToggle('fast', function() {
+      if (jQuery(this).is(':visible')) {
+        jQuery("#rack-webconsole form input").focus();
+        jQuery("#rack-webconsole .results_wrapper").scrollTop(
+          jQuery("#rack-webconsole .results").height()
+        );
+      } else {
+        jQuery("#rack-webconsole form input").blur();
+      }
+	});
+}
+konami.load()
 });
 
